@@ -45,6 +45,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                       onPressed: () async {
                         XFile? file = await new ImagePicker()
                             .pickImage(source: ImageSource.camera);
+
                         final storage = FirebaseStorage.instance;
                         final firestore = FirebaseFirestore.instance;
 
@@ -58,6 +59,9 @@ class _ChatInputFieldState extends State<ChatInputField> {
                         final user = FirebaseAuth.instance.currentUser;
                         final ref = storage.ref().child('images').child(
                             DateTime.now().toIso8601String() + file.name);
+                        
+                        await ref.putFile(File(fileBits, fileName));
+
                       },
                       icon: Icon(Icons.camera_alt_outlined),
                     ),
