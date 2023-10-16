@@ -23,8 +23,10 @@ class ChatApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         Login_page.id: (context) => Login_page(),
+        Home_Screen.id: (context) => Home_Screen(),
+        Sign_page.id: (context) => Home_Screen(),
       },
-      home: Home_Screen(),
+      home: Sign_page(),
     );
   }
 }

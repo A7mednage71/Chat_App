@@ -1,4 +1,4 @@
-
+import 'package:chatapp_final/Screens/Home_screen.dart';
 import 'package:chatapp_final/Screens/Login_page.dart';
 import 'package:chatapp_final/Wedggets/MaterialButtom.dart';
 import 'package:chatapp_final/Wedggets/TextWedget.dart';
@@ -27,7 +27,7 @@ class _Sign_pageState extends State<Sign_page> {
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(  
+    return ModalProgressHUD(
       inAsyncCall: isloading,
       child: Scaffold(
         body: Padding(
@@ -106,8 +106,10 @@ class _Sign_pageState extends State<Sign_page> {
                         isloading = true;
                         try {
                           await RegisterUser();
-                          // Navigator.pushNamed(context, Chat_page.id,
-                          //     arguments: email);
+                          Navigator.pushNamed(
+                            context,
+                            Home_Screen.id,
+                          );
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             Showsnakbar(
@@ -154,6 +156,7 @@ class _Sign_pageState extends State<Sign_page> {
       ),
     );
   }
+
   Future<void> RegisterUser() async {
     UserCredential user =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(

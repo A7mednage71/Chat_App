@@ -10,6 +10,7 @@ class Home_Screen extends StatefulWidget {
 
   @override
   State<Home_Screen> createState() => _Home_ScreenState();
+  static String id = "Nageh";
 }
 
 class _Home_ScreenState extends State<Home_Screen> {

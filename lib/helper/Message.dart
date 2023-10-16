@@ -11,14 +11,40 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (message.messagetype) {
-      case ChatMessagetype.text:
-        return MessageText(Message: message,);
-      case ChatMessagetype.image:
-        return MessageImage();
+    Widget messageContain(Chat_Message message, int index) {
+      switch (message.messagetype) {
+        case ChatMessagetype.text:
+          return MessageText(
+            Message: message,
+          );
+        case ChatMessagetype.image:
+          return MessageImage(
+            message: message,
+            index: index,
+          );
 
-      default:
-        return Container();
+        default:
+          return Container();
+      }
     }
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        mainAxisAlignment:
+            message.isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          if (message.isSender) ...[
+            CircleAvatar(
+              radius: 20,
+              child: Image.asset('assets/images/60111.jpg'),
+            )
+          ],
+          Expanded(
+            child: messageContain(message, index),
+          ),
+        ],
+      ),
+    );
   }
 }

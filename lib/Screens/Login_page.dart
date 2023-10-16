@@ -1,3 +1,4 @@
+import 'package:chatapp_final/Screens/Home_screen.dart';
 import 'package:chatapp_final/Wedggets/MaterialButtom.dart';
 import 'package:chatapp_final/Wedggets/TextWedget.dart';
 import 'package:chatapp_final/helper/Snakbar.dart';
@@ -77,6 +78,7 @@ class Login_page extends StatelessWidget {
                       try {
                         await LoginUser();
                         Showsnakbar(context, 'Success');
+                        Navigator.pushNamed(context, Home_Screen.id);
                         // Navigator.pushNamed(context, Chat_page.id,
                         //     arguments: email);
                       } on FirebaseAuthException catch (e) {
